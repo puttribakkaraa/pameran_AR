@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator - MTM Exhibition</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        .qr-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            color: #000;
+        }
+
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1rem;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .input-group {
+            margin-bottom: 2rem;
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>QR Generator</h1>
+            <p class="subtitle">Generate QR Codes for Exhibition Posters</p>
+        </header>
+
+        <div class="input-group">
+            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Website Base URL (e.g.,
+                https://username.github.io/pameran-mtm)</label>
+            <input type="text" id="baseUrl" placeholder="https://your-username.github.io/repo-name"
+                onchange="generateAll()">
+            <button class="btn" onclick="generateAll()">Generate All QR Codes</button>
+        </div>
+
+        <div class="product-grid">
+            <!-- QR Lower Die -->
+            <div class="qr-card">
+                <h3>Lower Die Finisher</h3>
+                <div id="qr-lower-die" class="qr-placeholder"></div>
+                <p id="url-lower-die"
+                    style="font-size: 0.8rem; color: #666; word-break: break-all; margin-bottom: 1rem;">...</p>
+                <button class="btn" onclick="downloadQR('qr-lower-die', 'Lower_Die_QR')">Download PNG</button>
+            </div>
+
+            <!-- QR V8 Engine -->
+            <div class="qr-card">
+                <h3>V8 Engine Internals</h3>
+                <div id="qr-v8" class="qr-placeholder"></div>
+                <p id="url-v8" style="font-size: 0.8rem; color: #666; word-break: break-all; margin-bottom: 1rem;">...
+                </p>
+                <button class="btn" onclick="downloadQR('qr-v8', 'V8_Engine_QR')">Download PNG</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const produ        { id: 'qr-lower-die', path: '/products/lower-die-finisher.html', labelId: 'url-lower-die' },
+            { id: 'qr-v8', path: '/products/v8-engine-internals.html', labelId: 'url-v8' }
+        ]   function generateAll() {
+            const baseUrl = document.getElementById('baseUrl').value.replace(/\/$/, '');
+            if (!baseUrl) return alert('Please enter Base URL first!');
+
+            products.forEach(p => {
+                const fullUrl = baseUrl + p.path;
+                const container = document.getElementById(p.id);
+                document.getElementById(p.labelId).tex tContent = fullUrl;
+                
+                container.innerHTML = ''; // Cleous
+                new QRCode(container, {
+                    text: fullUrl,
+                    width: 200,
+                    height: 200
+                    });
+        }
+
+        function downloadQR(elementId, filename) {
+            const container = document.getElementBd);
+            const img = container.querySelector('img');
+            if (img) {
+                const link reateElement('a');
+                link.download = filename + '.png';
+                link.href = img.src;
+                link.click();
+            } else {
+                alert('Generate QR first!');
+            }
+        }
+    </script>
+</body>
+
+</html>
