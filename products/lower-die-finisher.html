@@ -23,9 +23,8 @@
         </nav>
 
         <!-- AR Viewer -->
-        <model-viewer src="../models/Lower Die Finisher.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls
-            auto-rotate shadow-intensity="1" environment-image="neutral" exposure="1" loading="eager"
-            poster="../assets/poster.webp"> <!-- Optional poster if available -->
+        <model-viewer src="../models/Lower Die Finisher.glb" ar ar-modes="scene-viewer webxr quick-look" camera-controls
+            auto-rotate shadow-intensity="1" ar-scale="auto" ar-placement="floor" touch-action="pan-y">
 
             <div class="progress-bar hide" slot="progress-bar">
                 <div class="update-bar"></div>
